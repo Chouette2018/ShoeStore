@@ -2,4 +2,25 @@
     <string name="app_name">ShoeStore</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="size_label">Size</string>
+    <string name="welcome_title">Welcome\n to\n Virtual Shoe Store</string>
+    <string name="welcome_description">Thanks for downloading and installing our application. We are proud to count you as one of our users. Now, you will be able to save and manage a list of shoes for your store.</string>
+    <string name="btn_instructions_label">Instructions</string>
+    <string name="details_label">Details</string>
+    <string name="shoe_name_label">Shoe Name</string>
+    <string name="company_label">Company</string>
+    <string name="description_label">Description</string>
+    <string name="shoe_name_hint">enter a model name please</string>
+    <string name="company_hint">indicate manufacturer please</string>
+    <string name="size_hint">indicate the shoe size please</string>
+    <string name="description_hint">Enter a description please</string>
+    <string name="btn_cancel_label">Cancel</string>
+    <string name="btn_save_label">Save</string>
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
+    <string name="btn_log_in_label">Log in</string>
+    <string name="btn_sign_up_label">Sign up</string>
+    <string name="instructions_title">Instructions</string>
+    <string name="instructions_description">The Home screen will allow you to access the list of shoes. You will have the possibility to add new model. This screen can be accessed by pressing the floating button.</string>
+    <string name="btn_home_label">Home</string>
 </resources>
