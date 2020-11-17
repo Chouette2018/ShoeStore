@@ -41,6 +41,9 @@
             android:id="@+id/action_shoesFragment_to_shoeDetailFragment"
             app:destination="@id/shoeDetailFragment"
             app:popUpTo="@id/shoesFragment" />
+        <action
+            android:id="@+id/action_shoesFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/shoeDetailFragment"
@@ -50,5 +53,8 @@
         <action
             android:id="@+id/action_shoeDetailFragment_to_shoesFragment"
             app:destination="@id/shoesFragment" />
+        <action
+            android:id="@+id/action_shoeDetailFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>

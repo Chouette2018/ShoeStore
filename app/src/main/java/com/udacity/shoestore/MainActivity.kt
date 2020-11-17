@@ -7,9 +7,12 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toolbar
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.udacity.shoestore.Utility.Companion.isSignedIn
 import com.udacity.shoestore.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Timber.plant(Timber.DebugTree())
+        setupStartPage()
         configureToolbar()
     }
 
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.sign_out ->{
                 Utility.signOut(this)
+                findNavController(R.id.my_nav_host_fragment).navigate(R.id.action_shoesFragment_to_loginFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -44,5 +49,20 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.my_nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+        setSupportActionBar(binding.toolbar)
+    }
+
+    private fun setupStartPage(){
+        val navHostFragment = my_nav_host_fragment as NavHostFragment
+        val graphInflater = navHostFragment.navController.navInflater
+        val navGraph = graphInflater.inflate(R.navigation.main_nav)
+        val navController = navHostFragment.navController
+
+        val destination = if (isSignedIn(this)) R.id.shoesFragment  else R.id.loginFragment
+        navGraph.startDestination = destination
+        navController.graph = navGraph
+
+        //val navHostFragment :NavHostFragment = binding.myNavHostFragment as NavHostFragment
+
     }
 }

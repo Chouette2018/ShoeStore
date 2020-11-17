@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.MainActivity
+import com.udacity.shoestore.MyBaseFragment
 import com.udacity.shoestore.R
 import com.udacity.shoestore.Utility
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
@@ -19,7 +21,7 @@ import com.udacity.shoestore.models.Shoe
  * Use the [ShoeDetailFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ShoeDetailFragment : Fragment() {
+class ShoeDetailFragment : MyBaseFragment() {
     private val viewModel: ShoesViewModel by activityViewModels()
     private lateinit var binding: FragmentShoeDetailBinding
 
@@ -27,10 +29,16 @@ class ShoeDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        initMyFragments("Add new Shoes",true)
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentShoeDetailBinding>(inflater, R.layout.fragment_shoe_detail, container, false)
         setClickFunctions()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        requireActivity().title = "Add new shoes"
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun setClickFunctions(){
@@ -47,7 +55,7 @@ class ShoeDetailFragment : Fragment() {
     private fun getShoeInfo():Shoe{
         val name = binding.edShoeName.text.toString()
         val size = binding.edSize.text.toString()
-        val company = binding.edSize.text.toString()
+        val company = binding.edCompanyName.text.toString()
         val description = binding.edDescription.text.toString()
         return Shoe(name, size.toDouble(), company, description)
     }
