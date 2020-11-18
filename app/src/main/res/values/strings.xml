@@ -23,4 +23,5 @@
     <string name="instructions_title">Instructions</string>
     <string name="instructions_description">The Home screen will allow you to access the list of shoes. You will have the possibility to add new model. This screen can be accessed by pressing the floating button.</string>
     <string name="btn_home_label">Home</string>
+    <string name="log_in_title">Hello</string>
 </resources>

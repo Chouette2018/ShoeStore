@@ -6,8 +6,10 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toolbar
+import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.udacity.shoestore.Utility.Companion.isSignedIn
@@ -38,7 +40,11 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.sign_out ->{
                 Utility.signOut(this)
-                findNavController(R.id.my_nav_host_fragment).navigate(R.id.action_shoesFragment_to_loginFragment)
+                val startDestination = findNavController(R.id.my_nav_host_fragment).graph.startDestination
+                val navOptions = NavOptions.Builder()
+                    .setPopUpTo(startDestination, true)
+                    .build()
+                findNavController(R.id.my_nav_host_fragment).navigate(R.id.loginFragment, null, navOptions)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -47,7 +53,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun configureToolbar(){
         val navController = findNavController(R.id.my_nav_host_fragment)
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        //Avoid displaying back button and declaring top level destination
+        val appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment, R.id.shoesFragment ).build()
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
         setSupportActionBar(binding.toolbar)
     }
