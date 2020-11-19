@@ -16,11 +16,6 @@ import com.udacity.shoestore.Utility
 import com.udacity.shoestore.databinding.FragmentShoeDetailBinding
 import com.udacity.shoestore.models.Shoe
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ShoeDetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ShoeDetailFragment : MyBaseFragment() {
     private val viewModel: ShoesViewModel by activityViewModels()
     private lateinit var binding: FragmentShoeDetailBinding
@@ -29,34 +24,36 @@ class ShoeDetailFragment : MyBaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        initMyFragments("Add new Shoes",true)
+        initMyFragments(getString(R.string.new_shoes_bar_title),true)
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentShoeDetailBinding>(inflater, R.layout.fragment_shoe_detail, container, false)
+
         setClickFunctions()
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        requireActivity().title = "Add new shoes"
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     private fun setClickFunctions(){
-        binding.btnSave.setOnClickListener {
-            viewModel.addShoe(getShoeInfo())
-            findNavController().popBackStack()
-        }
+        binding.apply {
+            btnSave.setOnClickListener {
+                viewModel.addShoe(getShoeInfo())
+                findNavController().popBackStack()
+            }
 
-        binding.btnCancel.setOnClickListener {
-            findNavController().popBackStack()
+            btnCancel.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
     private fun getShoeInfo():Shoe{
-        val name = binding.edShoeName.text.toString()
-        val size = binding.edSize.text.toString()
-        val company = binding.edCompanyName.text.toString()
-        val description = binding.edDescription.text.toString()
-        return Shoe(name, size.toDouble(), company, description)
+        binding.apply {
+            val name = edShoeName.text.toString()
+            val size = edSize.text.toString()
+            val company = edCompanyName.text.toString()
+            val description = edDescription.text.toString()
+            return Shoe(name, size.toDouble(), company, description)
+        }
     }
 }

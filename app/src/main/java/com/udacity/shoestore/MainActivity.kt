@@ -1,15 +1,14 @@
 package com.udacity.shoestore
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.udacity.shoestore.Utility.Companion.isSignedIn
@@ -38,6 +37,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            android.R.id.home ->{
+                findNavController(R.id.my_nav_host_fragment).popBackStack()
+            }
             R.id.sign_out ->{
                 Utility.signOut(this)
                 val startDestination = findNavController(R.id.my_nav_host_fragment).graph.startDestination

@@ -24,4 +24,8 @@
     <string name="instructions_description">The Home screen will allow you to access the list of shoes. You will have the possibility to add new model. This screen can be accessed by pressing the floating button.</string>
     <string name="btn_home_label">Home</string>
     <string name="log_in_title">Hello</string>
+    <string name="welcome_bar_title">Welcome</string>
+    <string name="new_shoes_bar_title">Add new Shoes</string>
+    <string name="log_in_bar_title">Log in</string>
+    <string name="shoes_bar_title">List of Shoes</string>
 </resources>

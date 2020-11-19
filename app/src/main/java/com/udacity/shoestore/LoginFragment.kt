@@ -9,11 +9,12 @@ import com.udacity.shoestore.databinding.FragmentLoginBinding
 
 class LoginFragment : MyBaseFragment() {
     private lateinit var binding : FragmentLoginBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        initMyFragments("Log in", true)
+        initMyFragments(getString(R.string.log_in_bar_title), true)
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater, R.layout.fragment_login, container, false)
         setClickFunctions()
@@ -21,20 +22,26 @@ class LoginFragment : MyBaseFragment() {
     }
 
     private fun setClickFunctions(){
-        binding.btnLogin.setOnClickListener {
-            Utility.signIn(binding.email.editText?.text.toString(),
-                binding.password.editText?.text.toString(),
-                activity as MainActivity
-            )
-            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
-        }
+        binding.apply {
+            val email = email.editText?.text.toString()
+            val password = password.editText?.text.toString()
+            btnLogin.setOnClickListener {
+                Utility.signIn(
+                    email,
+                    password,
+                    activity as MainActivity
+                )
+                findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            }
 
-        binding.btnSignup.setOnClickListener {
-            Utility.createAccount(binding.email.editText?.text.toString(),
-                binding.password.editText?.text.toString(),
-                activity as MainActivity
-            )
-            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            btnSignup.setOnClickListener {
+                Utility.createAccount(
+                    email,
+                    password,
+                    activity as MainActivity
+                )
+                findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+            }
         }
     }
 }
