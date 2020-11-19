@@ -20,18 +20,11 @@ class InstructionsFragment : MyBaseFragment() {
         initMyFragments("Instructions", true)
         // Inflate the layout for this fragment
         binding = FragmentInstructionsBinding.inflate(inflater, container, false)
-        setClickFunctions()
+        binding.instructionsFrag = this
         return binding.root
     }
 
-    private fun setClickFunctions(){
-        binding.btnInstructions.setOnClickListener {
-            findNavController().navigate(R.id.action_instructionsFragment_to_shoesFragment)
-        }
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.sign_out).isVisible = false
-        super.onPrepareOptionsMenu(menu)
+    fun onClick(){
+        findNavController().navigate(R.id.action_instructionsFragment_to_shoesFragment)
     }
 }

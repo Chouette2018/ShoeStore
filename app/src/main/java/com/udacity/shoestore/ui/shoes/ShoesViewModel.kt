@@ -13,6 +13,15 @@ class ShoesViewModel : ViewModel(){
 
     fun addShoe(shoe:Shoe){
         shoelist.add(shoe)
+        notifyObserver()
+    }
+
+    fun resetData() {
+        shoelist.clear()
+        notifyObserver()
+    }
+
+    private fun notifyObserver(){
         _shoes.value = shoelist
     }
 }

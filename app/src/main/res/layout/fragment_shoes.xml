@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="shoesFrag"
+            type="com.udacity.shoestore.ui.shoes.ShoesFragment" />
     </data>
 
     <FrameLayout
@@ -26,6 +28,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="24dp"
             android:clickable="true"
+            android:onClick="@{()->shoesFrag.addShoes()}"
             android:src="@drawable/ic_add"
             android:focusable="true" />
     </FrameLayout>

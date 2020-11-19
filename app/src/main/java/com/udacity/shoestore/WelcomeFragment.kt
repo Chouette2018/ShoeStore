@@ -20,13 +20,11 @@ class WelcomeFragment : MyBaseFragment() {
         initMyFragments(getString(R.string.welcome_bar_title), true)
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome, container, false)
-        setClickFunctions()
+        binding.welcomeFrag = this
         return binding.root
     }
 
-    private fun setClickFunctions(){
-        binding.button.setOnClickListener {
-            findNavController().navigate(R.id.action_welcomeFragment_to_instructionsFragment)
-        }
+    fun onClick(){
+        findNavController().navigate(R.id.action_welcomeFragment_to_instructionsFragment)
     }
 }

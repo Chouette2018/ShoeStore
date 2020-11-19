@@ -29,22 +29,18 @@ class ShoeDetailFragment : MyBaseFragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentShoeDetailBinding>(inflater, R.layout.fragment_shoe_detail, container, false)
 
-        setClickFunctions()
+        binding.shoeDetailFrag = this
 
         return binding.root
     }
 
-    private fun setClickFunctions(){
-        binding.apply {
-            btnSave.setOnClickListener {
-                viewModel.addShoe(getShoeInfo())
-                findNavController().popBackStack()
-            }
+    fun onSave(){
+        viewModel.addShoe(getShoeInfo())
+        findNavController().popBackStack()
+    }
 
-            btnCancel.setOnClickListener {
-                findNavController().popBackStack()
-            }
-        }
+    fun onCancel(){
+        findNavController().popBackStack()
     }
 
     private fun getShoeInfo():Shoe{

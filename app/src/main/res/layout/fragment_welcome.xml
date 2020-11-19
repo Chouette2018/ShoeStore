@@ -4,26 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="welcomeFrag"
+            type="com.udacity.shoestore.WelcomeFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:elevation="12dp"
         tools:context=".WelcomeFragment">
 
         <TextView
             android:id="@+id/welcome_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="70dp"
-            android:layout_marginEnd="24dp"
-            android:fontFamily="cursive"
             android:text="@string/welcome_title"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
+            style="@style/titleStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,20 +30,18 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="24dp"
-            android:fontFamily="cursive"
             android:text="@string/welcome_description"
-            android:textAlignment="viewStart"
-            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/welcome_title" />
+            app:layout_constraintTop_toBottomOf="@+id/welcome_title"
+            style="@style/mainTextStyle" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/buttonStyle.v2"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
+            android:onClick="@{() -> welcomeFrag.onClick()}"
             android:text="@string/btn_instructions_label"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

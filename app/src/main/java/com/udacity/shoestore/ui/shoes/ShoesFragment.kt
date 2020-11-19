@@ -45,31 +45,20 @@ class ShoesFragment : MyBaseFragment() {
             )
             lifecycleOwner = this@ShoesFragment
 
-            setClickFunctions()
+            shoesFrag = this@ShoesFragment
 
             return root
         }
     }
 
-    private fun setClickFunctions(){
-        binding.btnAddShoe.setOnClickListener {
-            findNavController().navigate(R.id.action_shoesFragment_to_shoeDetailFragment)
-        }
+    fun addShoes(){
+        findNavController().navigate(R.id.action_shoesFragment_to_shoeDetailFragment)
     }
 
     class ShoeAdapter : ListAdapter<Shoe, ShoeAdapter.ShoeHolder>(ShoeDiffCallBack()){
         override fun onBindViewHolder(holder: ShoeHolder, position: Int) {
             val item = getItem(position)
-            holder.bind(item)
-
-            holder.itemView.setOnClickListener {
-                // Get the current state of the item
-                val expanded: Boolean = item.isExpanded
-                // Change the state
-                item.isExpanded = !expanded
-                // Notify the adapter that item has changed
-                notifyItemChanged(position)
-            }
+            holder.bind(item, this)
         }
 
 
@@ -77,9 +66,21 @@ class ShoesFragment : MyBaseFragment() {
             return ShoeHolder.from(parent)
         }
 
+        fun onClick(holder: ShoeHolder){
+
+            val item = getItem(holder.adapterPosition)
+
+            item.isExpanded = !item.isExpanded
+
+            notifyItemChanged(holder.adapterPosition)
+        }
+
         class ShoeHolder private constructor(val binding : SimpleShoeItem2Binding) : RecyclerView.ViewHolder(binding.root){
-            fun bind(shoe:Shoe){
+            fun bind(shoe:Shoe, mainShoeAdapter:ShoeAdapter){
                 binding.apply{
+                    shoeHolder = this@ShoeHolder
+                    shoeAdapter = mainShoeAdapter
+
                     shoeName.text = shoe.name
                     companyName.text = shoe.company
                     sizeValue.text = shoe.size.toString()

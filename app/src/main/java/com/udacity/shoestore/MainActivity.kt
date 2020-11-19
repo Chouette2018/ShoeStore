@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.ui.input.key.Key.Companion.Home
 import androidx.navigation.NavOptions
@@ -13,11 +14,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.udacity.shoestore.Utility.Companion.isSignedIn
 import com.udacity.shoestore.databinding.ActivityMainBinding
+import com.udacity.shoestore.ui.shoes.ShoesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
-
+    private val viewModel: ShoesViewModel by viewModels()
     private lateinit var binding : ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                 findNavController(R.id.my_nav_host_fragment).popBackStack()
             }
             R.id.sign_out ->{
+                viewModel.resetData()
                 Utility.signOut(this)
                 val startDestination = findNavController(R.id.my_nav_host_fragment).graph.startDestination
                 val navOptions = NavOptions.Builder()

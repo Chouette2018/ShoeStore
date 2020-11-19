@@ -17,31 +17,29 @@ class LoginFragment : MyBaseFragment() {
         initMyFragments(getString(R.string.log_in_bar_title), true)
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate<FragmentLoginBinding>(inflater, R.layout.fragment_login, container, false)
-        setClickFunctions()
+        binding.loginFrag = this
         return binding.root
     }
 
-    private fun setClickFunctions(){
+    fun onLogIn() {
         binding.apply {
-            val email = email.editText?.text.toString()
-            val password = password.editText?.text.toString()
-            btnLogin.setOnClickListener {
-                Utility.signIn(
-                    email,
-                    password,
-                    activity as MainActivity
-                )
-                findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
-            }
+            Utility.signIn(
+                email.editText?.text.toString(),
+                password.editText?.text.toString(),
+                activity as MainActivity
+            )
+            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
+        }
+    }
 
-            btnSignup.setOnClickListener {
-                Utility.createAccount(
-                    email,
-                    password,
-                    activity as MainActivity
-                )
-                findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
-            }
+    fun onSignUp() {
+        binding.apply {
+            Utility.createAccount(
+                email.editText?.text.toString(),
+                password.editText?.text.toString(),
+                activity as MainActivity
+            )
+            findNavController().navigate(R.id.action_loginFragment_to_welcomeFragment)
         }
     }
 }

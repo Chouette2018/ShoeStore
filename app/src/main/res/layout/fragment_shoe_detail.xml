@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="shoeDetailFrag"
+            type="com.udacity.shoestore.ui.shoes.ShoeDetailFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,24 +15,14 @@
         android:layout_height="match_parent"
         tools:context=".ui.shoes.ShoeDetailFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-
         <TextView
             android:id="@+id/shoe_detail_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="@dimen/title_margin"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="cursive"
-            android:gravity="center"
             android:text="@string/details_label"
-            android:textSize="30sp"
-            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            style="@style/titleStyle" />
 
         <View
             android:id="@+id/divider"
@@ -168,6 +160,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
             android:text="@string/btn_cancel_label"
+            android:onClick="@{()->shoeDetailFrag.onCancel()}"
+            style="@style/buttonStyle.v2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
@@ -177,6 +171,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:text="@string/btn_save_label"
+            android:onClick="@{()->shoeDetailFrag.onSave()}"
+            style="@style/buttonStyle.v2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
