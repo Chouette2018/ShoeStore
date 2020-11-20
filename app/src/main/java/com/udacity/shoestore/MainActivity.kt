@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
     private fun configureToolbar(){
         val navController = findNavController(R.id.my_nav_host_fragment)
         //Avoid displaying back button and declaring top level destination
-        val appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment, R.id.shoesFragment ).build()
+        val appBarConfiguration = AppBarConfiguration.Builder(R.id.loginFragment, R.id.shoesFragment2, R.id.welcomeFragment ).build()
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
         setSupportActionBar(binding.toolbar)
     }
@@ -70,11 +70,8 @@ class MainActivity : AppCompatActivity() {
         val navGraph = graphInflater.inflate(R.navigation.main_nav)
         val navController = navHostFragment.navController
 
-        val destination = if (isSignedIn(this)) R.id.shoesFragment  else R.id.loginFragment
+        val destination = if (isSignedIn(this)) R.id.shoesFragment2  else R.id.loginFragment
         navGraph.startDestination = destination
         navController.graph = navGraph
-
-        //val navHostFragment :NavHostFragment = binding.myNavHostFragment as NavHostFragment
-
     }
 }

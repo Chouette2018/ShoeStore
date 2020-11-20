@@ -11,8 +11,20 @@ class ShoesViewModel : ViewModel(){
      val shoes : LiveData<List<Shoe>>
         get() = _shoes
 
-    fun addShoe(shoe:Shoe){
-        shoelist.add(shoe)
+    val name = MutableLiveData<String>()
+    val size = MutableLiveData<String>()
+    val company = MutableLiveData<String>()
+    val description = MutableLiveData<String>()
+
+    fun resetValues(){
+        name.value = ""
+        size.value = ""
+        company.value = ""
+        description.value = ""
+    }
+
+    fun addShoe(){
+        shoelist.add(Shoe(name.value!!, size.value!!.toDouble(), company.value!!, description.value!!))
         notifyObserver()
     }
 
@@ -24,4 +36,5 @@ class ShoesViewModel : ViewModel(){
     private fun notifyObserver(){
         _shoes.value = shoelist
     }
+
 }

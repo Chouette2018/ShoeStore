@@ -5,11 +5,8 @@
 
     <data>
         <variable
-            name="shoeHolder"
-            type="com.udacity.shoestore.ui.shoes.ShoesFragment.ShoeAdapter.ShoeHolder" />
-        <variable
-            name="shoeAdapter"
-            type="com.udacity.shoestore.ui.shoes.ShoesFragment.ShoeAdapter" />
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -17,7 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:elevation="12dp"
-        android:onClick="@{()->shoeAdapter.onClick(shoeHolder)}"
         app:cardBackgroundColor="@color/colorPrimary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 style="@style/mainTextStyle"
+                android:text="@{shoe.name}"
                 android:textColor="@color/design_default_color_on_primary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -42,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:text="@{shoe.company}"
                 android:textColor="@color/design_default_color_on_primary"
                 style="@style/mainTextStyle"
                 app:layout_constraintStart_toStartOf="@+id/shoe_name"
@@ -64,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:text="@{String.valueOf(shoe.size)}"
                 android:textColor="@color/design_default_color_on_primary"
                 style="@style/mainTextStyle"
                 app:layout_constraintBaseline_toBaselineOf="@+id/size_label"
@@ -87,6 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:text="@{shoe.description}"
                 android:textColor="@color/design_default_color_on_primary"
                 style="@style/mainTextStyle"
                 app:layout_constraintEnd_toEndOf="parent"
